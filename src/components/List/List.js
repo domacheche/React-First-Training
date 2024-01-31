@@ -1,12 +1,12 @@
-import styles from './List.module.scss';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { getAllColumns } from '../../redux/store';
 import Column from './../Column/Column';
 import ColumnForm from './../ColumnForm/ColumnForm';
-import { useSelector } from 'react-redux';
-
+import styles from './List.module.scss';
 
 const List = () => {
-    const columns = useSelector(state => state.columns);
-
+    const columns = useSelector(getAllColumns);
 
     return (
         <div>
@@ -20,8 +20,7 @@ const List = () => {
                         key={column.id} 
                         id={column.id} 
                         title={column.title} 
-                        icon={column.icon} 
-                        cards={column.cards} 
+                        icon={column.icon}
                     />
                 ))}
             </section>

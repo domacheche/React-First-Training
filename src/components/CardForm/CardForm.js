@@ -1,8 +1,9 @@
-import styles from './CardForm.module.scss';
-import { useState } from 'react';
-import Button from './../Button/Button';
-import TextInput from './../TextInput/TextInput';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { addCard } from '../../redux/store';
+import Button from '../Button/Button';
+import TextInput from '../TextInput/TextInput';
+import styles from './CardForm.module.scss';
 
 const CardForm = ({ columnId }) => {
     const [title, setTitle] = useState('');
@@ -10,11 +11,7 @@ const CardForm = ({ columnId }) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        
-        dispatch({
-            type: 'ADD_CARD',
-            payload: { title, columnId }
-        });
+        dispatch(addCard({ title, columnId }));
         setTitle('');
     };
 
@@ -23,7 +20,7 @@ const CardForm = ({ columnId }) => {
             <TextInput 
                 value={title} 
                 onChange={e => setTitle(e.target.value)}
-                placeholder="Enter card title" 
+                placeholder="Enter card title"
             />
             <Button>Add card</Button> {}
         </form>
