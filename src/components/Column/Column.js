@@ -1,9 +1,14 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styles from './Column.module.scss';
 import Card from '../Card/Card';
 import CardForm from '../CardForm/CardForm';
 
+const Column = ({ id, title, icon, addCard }) => {
+    const cards = useSelector(state => 
+        state.cards.filter(card => card.columnId === id)
+    );
 
-const Column = ({ id, title, icon, cards, addCard }) => {
     return (
         <article className={styles.column}>
             <h2 className={styles.title}>
