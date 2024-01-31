@@ -8,7 +8,7 @@ const CardForm = ({ action, columnId }) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        action({ title, columnId });
+        action({ title }, columnId);
         setTitle('');
     };
 
