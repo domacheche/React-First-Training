@@ -1,9 +1,13 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styles from './Column.module.scss';
 import Card from '../Card/Card';
 import CardForm from '../CardForm/CardForm';
+import { getFilteredCards } from '../../redux/store'; // Upewnij się, że ta ścieżka jest poprawna
 
+const Column = ({ id, title, icon }) => {
+    const cards = useSelector(state => getFilteredCards(state, id));
 
-const Column = ({ id, title, icon, cards, addCard }) => {
     return (
         <article className={styles.column}>
             <h2 className={styles.title}>
@@ -15,7 +19,7 @@ const Column = ({ id, title, icon, cards, addCard }) => {
                     <Card key={card.id} title={card.title} />
                 ))}
             </ul>
-            <CardForm action={addCard} columnId={id} />
+            <CardForm columnId={id} />
         </article>
     );
 };
