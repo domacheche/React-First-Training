@@ -8,7 +8,12 @@ export const addCard = payload => ({ type: ADD_CARD, payload });
 export const toggleCardFavorite = id => ({ type: TOGGLE_CARD_FAVORITE, payload: id });
 
 export const getFavoriteCards = state => state.card.filter(card => card.isFavorite);
-export const getFilteredCards = ({cards}, searchString = '') => cards.filter(card => card.title.toLowerCase().includes(searchString.toLowerCase()));
+export const getFilteredCards = ({cards}, columnId, searchString = '') => {
+  return cards.filter(card => 
+    card.title.toLowerCase().includes(searchString.toLowerCase()) && card.columnId === columnId
+  );
+};
+
 
 export const removeCard = id => ({ type: REMOVE_CARD, payload: id });
 
